@@ -1,0 +1,8 @@
+logging:
+  level: INFO
+  loggers:
+    com.snydergp.home: DEBUG
+gate:
+  pin: GPIO_00
+  duration: 5000
+
