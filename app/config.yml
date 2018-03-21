@@ -5,4 +5,6 @@ logging:
 gate:
   pin: GPIO_00
   duration: 5000
+shiro:
+  iniConfigs: ["classpath:shiro.ini"]
 

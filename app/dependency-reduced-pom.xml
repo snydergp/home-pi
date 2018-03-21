@@ -87,6 +87,36 @@
       </plugin>
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>publish</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.6.0</version>
+            <executions>
+              <execution>
+                <id>copy-fat-jar</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <executable>scp</executable>
+              <arguments>
+                <argument>${project.basedir}/target/home-pi-app-${project.version}.jar</argument>
+                <argument>greg@pi.local:/etc/home-pi/deploy</argument>
+              </arguments>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
   <reporting>
     <plugins>
       <plugin>
@@ -116,7 +146,7 @@
   </dependencyManagement>
   <properties>
     <dropwizard.version>1.2.2</dropwizard.version>
-    <mainClass>com.gpsnyder.home.app.ConsoleApplication</mainClass>
+    <mainClass>com.gpsnyder.home.app.HomeApplication</mainClass>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>

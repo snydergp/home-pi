@@ -12,6 +12,7 @@
     <modules>
         <module>gate</module>
         <module>app</module>
+        <module>data</module>
     </modules>
 
     <repositories>

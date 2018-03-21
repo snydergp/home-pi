@@ -1,27 +1,26 @@
 package com.gpsnyder.home.app.resource;
 
 import com.codahale.metrics.annotation.Timed;
-import com.gpsnyder.home.app.model.HomeResponse;
+import com.gpsnyder.home.app.views.HomeView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Path("/")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.TEXT_HTML)
 public class HomeResource {
 
-    private final AtomicLong counter;
-
-    public HomeResource() {
-        this.counter = new AtomicLong();
-    }
+    private static final Logger LOG = LoggerFactory.getLogger(HomeView.class);
 
     @GET
     @Timed
-    public HomeResponse sayHello() {
-        return new HomeResponse(counter.getAndIncrement(), "Hi!");
+    public HomeView sayHello(@Context HttpServletRequest httpRequest) {
+        return new HomeView();
     }
 }
